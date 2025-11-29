@@ -1,0 +1,38 @@
+@page
+@model RazorPagesApp.Pages.WeatherModel
+@{
+    ViewData["Title"] = "Weather Forecast";
+}
+
+<h1>Weather Forecast</h1>
+
+<p>This page fetches weather data from a protected internal API endpoint using cookie authentication.</p>
+
+@if (Model.WeatherData != null && Model.WeatherData.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var weather in Model.WeatherData)
+            {
+                <tr>
+                    <td>@weather.Date</td>
+                    <td>@weather.TemperatureC</td>
+                    <td>@weather.TemperatureF</td>
+                    <td>@weather.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-muted">No weather data available.</p>
+}
